@@ -11,15 +11,12 @@
 
 using namespace  std;
 
-int main()
+void general_formula(double a, double b, double c)
 {
-    double a = 8, b=1, c=5;
     double x_sol1 = 0.0, x_sol2 = 0.0;
     double descriminant =0.0;
 
-
     descriminant = pow(b,2)-4*a*c;
-
     if(descriminant>=0)
     {
         x_sol1 = (-b + sqrt(pow(b,2)-4*a*c))/(2*a);
@@ -32,6 +29,30 @@ int main()
     {
         cout<<left<<"The given equation does not have real solution, the descriminant value is: "<<descriminant<<endl;
     }
+}
+
+int main()
+{
+    double a = 8, b=1, c=5;   
+    
+
+    string answer1 = "yes";
+    string answer2 = "yes";
+
+
+    while(answer1 == answer2)
+    {
+        cout<<"Please provide the coefficients of your quadratic equation: "<<endl;
+        cin >> a >> b >> c;
+        
+        general_formula(a,b,c);
+
+       cout<<"\nDo you want to keep using the APP? ";
+       cin >> ws;
+       getline(cin,answer2);
+    }
+
+
 
   return 0;  
 } 
