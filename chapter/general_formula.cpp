@@ -31,6 +31,27 @@ void general_formula(double a, double b, double c)
     }
 }
 
+void vertex(double a, double b, double c)
+{
+   double vertex1 = 0.0;
+   double vertex2 = 0.0;
+
+   vertex1 = -b/(2*a);
+   vertex2 = a*pow(vertex1,2)+b*vertex1+c;
+
+   printf("\n The vertex are:(%.4f,%.4f)",vertex1,vertex2);
+}
+
+void evaluation(double a, double b, double c, double x_values[], double y_values[],int leng)
+{
+   
+   for(int i=0;i<leng; i++)
+   {
+    y_values[i] = a*pow(x_values[i],2)+b*x_values[i]+c;
+    cout<<"For x="<<x_values[i]<<"; y="<<y_values[i]<<endl;
+   }
+}
+
 int main()
 {
     double a = 8, b=1, c=5;   
@@ -38,15 +59,16 @@ int main()
 
     string answer1 = "yes";
     string answer2 = "yes";
-
-
+    double x_values[] = {2,3,4,5,7,8};
+    double y_values[6] = {};
+    int leng = 6;
     while(answer1 == answer2)
     {
         cout<<"Please provide the coefficients of your quadratic equation: "<<endl;
         cin >> a >> b >> c;
         
         general_formula(a,b,c);
-
+        evaluation(a, b, c, x_values, y_values,leng);
        cout<<"\nDo you want to keep using the APP? ";
        cin >> ws;
        getline(cin,answer2);
