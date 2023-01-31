@@ -14,6 +14,10 @@
 
 using namespace std;
 
+void print_by_name(string name[], string id[], string phone[], int num_clients);
+void print_by_id(string name[], string id[], string phone[], int num_clients);
+void print_by_phone(string name[], string id[], string phone[], int num_clients);
+
 int main()
 {
     ifstream InputFile;
@@ -38,16 +42,82 @@ int main()
         InputFile >> name[index];
         InputFile >> phone[index];
 
-        printf("Client info: %s %s %s\n", );
+        printf("Client info: %s %s %s\n", id[index].c_str(), name[index].c_str(), phone[index].c_str());
         
-
         index = index + 1;
     }
+    index = index - 1;
+    print_by_name( name, id, phone, index);
 
     InputFile.close();
-    cout<<"All clients were loaded..."<<endl;
+    cout<<"\nAll clients were loaded..."<<endl;
 
     return 0;
 
 }
 
+void print_by_name(string name[], string id[], string phone[], int num_clients)
+{
+  string given_name;
+  bool found = false;
+
+  cout<<"Please write the name of the client ";
+  cin >> given_name;
+
+  for(int i=0; i< num_clients; i++)
+  {
+    if(given_name == name[i])
+    {
+        found = true;
+        printf("\nThe information of the client: %s %s %s", id[i].c_str(), name[i].c_str(), phone[i].c_str());
+        break;
+    }
+  }
+ if(!found)
+ {cout<<"Client not found.."<<endl;}
+        
+}
+
+void print_by_id(string name[], string id[], string phone[], int num_clients)
+{
+  string given_id;
+  bool found = false;
+
+  cout<<"Please write the name of the client ";
+  cin >> given_id;
+
+  for(int i=0; i< num_clients; i++)
+  {
+    if(given_id == id[i])
+    {
+        found = true;
+        printf("\nThe information of the client: %s %s %s", id[i].c_str(), name[i].c_str(), phone[i].c_str());
+        break;
+    }
+  }
+ if(!found)
+ {cout<<"Client not found.."<<endl;}
+        
+}
+
+void print_by_phone(string name[], string id[], string phone[], int num_clients)
+{
+  string given_phone;
+  bool found = false;
+
+  cout<<"Please write the name of the client ";
+  cin >> given_phone;
+
+  for(int i=0; i< num_clients; i++)
+  {
+    if(given_phone == phone[i])
+    {
+        found = true;
+        printf("\nThe information of the client: %s %s %s", id[i].c_str(), name[i].c_str(), phone[i].c_str());
+        break;
+    }
+  }
+ if(!found)
+ {cout<<"Client not found.."<<endl;}
+        
+}
