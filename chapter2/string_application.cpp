@@ -17,10 +17,11 @@ using namespace std;
 int main()
 {
     ifstream InputFile;
-    string name;
-    string id;
-    string phone;
+    string name[6]={};
+    string id[6]={};
+    string phone[6]={};
     string client_info;
+    int index = 0;
 
     InputFile.open("agenda_phone.txt");
 
@@ -30,12 +31,17 @@ int main()
         exit(1);
     }
 
-    getline(InputFile,client_info);
 
     while(!InputFile.eof())  //eof() is a function from your ifstream class; It allows to identify is the line is empty or not.
     {
-        printf("Client info: %s\n", client_info.c_str());
-        getline(InputFile,client_info);
+        InputFile >> id[index];
+        InputFile >> name[index];
+        InputFile >> phone[index];
+
+        printf("Client info: %s %s %s\n", );
+        
+
+        index = index + 1;
     }
 
     InputFile.close();
