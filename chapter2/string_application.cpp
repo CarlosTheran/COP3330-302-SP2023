@@ -10,12 +10,12 @@
 #include <fstream> // this library allow us to read txt files.
 #include <cstdlib> // For ceer, identify if s file exits.
 #include <string>
-
+#include <iomanip> //setw() function
 
 using namespace std;
 
 void print_by_name(string name[], string id[], string phone[], int num_clients);
-void print_by_id(string name[], string id[], string phone[], int num_clients);
+int print_by_id(string name[], string id[], string phone[], int num_clients);
 void print_by_phone(string name[], string id[], string phone[], int num_clients);
 
 int main()
@@ -26,6 +26,7 @@ int main()
     string phone[6]={};
     string client_info;
     int index = 0;
+    int expression = 0;
 
     InputFile.open("agenda_phone.txt");
 
@@ -47,10 +48,33 @@ int main()
         index = index + 1;
     }
     index = index - 1;
-    print_by_name( name, id, phone, index);
 
     InputFile.close();
     cout<<"\nAll clients were loaded..."<<endl;
+
+    cout<<"\n\n*********************************"<<endl;
+    cout<<"***"<<setw(15)<<"MENU"<<setw(15)<<"***"<<endl;
+    cout<<left<<setw(15)<<"1. Search by name"<<setw(15)<<endl;
+    cout<<left<<setw(15)<<"2. Search by id"<<setw(15)<<endl;
+    cout<<left<<setw(15)<<"3. Search by phone"<<setw(15)<<endl;
+    cout<<"********************************"<<endl;
+    cout<<"Your option: ";
+    cin >> expression;
+
+    switch (expression)
+    {
+    case 1:
+      print_by_name(name, id, phone, index);
+      break;
+    case 2:
+      print_by_id(name, id, phone, index);
+    case 3:
+      print_by_phone(name, id, phone, index);
+      break;
+    default:
+      cout<<"Invalid option."<<endl;
+      break;
+    }
 
     return 0;
 
@@ -78,10 +102,11 @@ void print_by_name(string name[], string id[], string phone[], int num_clients)
         
 }
 
-void print_by_id(string name[], string id[], string phone[], int num_clients)
+int print_by_id(string name[], string id[], string phone[], int num_clients)
 {
   string given_id;
   bool found = false;
+  int index = -1;
 
   cout<<"Please write the name of the client ";
   cin >> given_id;
@@ -91,13 +116,15 @@ void print_by_id(string name[], string id[], string phone[], int num_clients)
     if(given_id == id[i])
     {
         found = true;
+        index = i;
         printf("\nThe information of the client: %s %s %s", id[i].c_str(), name[i].c_str(), phone[i].c_str());
         break;
     }
   }
  if(!found)
  {cout<<"Client not found.."<<endl;}
-        
+
+ return index; 
 }
 
 void print_by_phone(string name[], string id[], string phone[], int num_clients)
@@ -120,4 +147,9 @@ void print_by_phone(string name[], string id[], string phone[], int num_clients)
  if(!found)
  {cout<<"Client not found.."<<endl;}
         
+}
+
+void edit_name(string name[], string id[], string phone[], int num_client)
+{
+  int position = print_by_id(name, id, phone, num_client);
 }
