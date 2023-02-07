@@ -17,6 +17,8 @@ using namespace std;
 void print_by_name(string name[], string id[], string phone[], int num_clients);
 int print_by_id(string name[], string id[], string phone[], int num_clients);
 void print_by_phone(string name[], string id[], string phone[], int num_clients);
+void edit_name(string name[], string id[], string phone[], int num_client);
+void print_information(string name[], string id[], string phone[], int num_clients);
 
 int main()
 {
@@ -57,6 +59,7 @@ int main()
     cout<<left<<setw(15)<<"1. Search by name"<<setw(15)<<endl;
     cout<<left<<setw(15)<<"2. Search by id"<<setw(15)<<endl;
     cout<<left<<setw(15)<<"3. Search by phone"<<setw(15)<<endl;
+    cout<<left<<setw(15)<<"4. Edit name"<<setw(15)<<endl;
     cout<<"********************************"<<endl;
     cout<<"Your option: ";
     cin >> expression;
@@ -71,11 +74,14 @@ int main()
     case 3:
       print_by_phone(name, id, phone, index);
       break;
+    case 4:
+      edit_name(name, id, phone, index);  
+      break;
     default:
       cout<<"Invalid option."<<endl;
       break;
     }
-
+    print_information(name, id, phone, index);
     return 0;
 
 }
@@ -108,7 +114,7 @@ int print_by_id(string name[], string id[], string phone[], int num_clients)
   bool found = false;
   int index = -1;
 
-  cout<<"Please write the name of the client ";
+  cout<<"Please write the ID of the client ";
   cin >> given_id;
 
   for(int i=0; i< num_clients; i++)
@@ -152,4 +158,22 @@ void print_by_phone(string name[], string id[], string phone[], int num_clients)
 void edit_name(string name[], string id[], string phone[], int num_client)
 {
   int position = print_by_id(name, id, phone, num_client);
+  string new_name;
+  
+  int len = name[position].length();
+  cout<<"\nPlease provide the client's name: ";
+  cin >> new_name;
+
+  cout<<"Changed name "<<name[position]<<" by "<<new_name<<endl;
+
+  name[position].replace(0,len,new_name);
+}
+
+void print_information(string name[], string id[], string phone[], int num_clients)
+{
+  cout<<"The information of the clients: ";
+   for(int i=0; i<num_clients; i++)
+   {
+     printf("\n %s %s %s", id[i].c_str(), name[i].c_str(), phone[i].c_str());
+   }
 }
