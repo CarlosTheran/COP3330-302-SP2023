@@ -1,79 +1,10 @@
-/*
-                            Carlos Theran
-                                COP3330
-        This program finds the roots for quadratic equation ax^2+bx+c=0                   
-*/
-
-
+/*********************************** METHODS *******************************************/
+#include "QuadraticPolinomial.h"
 #include <iostream> //library is use for cout and cin function
 #include <math.h> //library is use for mathematical functions
 #include <iomanip> //library is use stream manipulator (setw ans setprecision)
 
-using namespace  std;
-
-class QuadraticPolinomial
-{
-   private:
-    double a;
-    double b;
-    double c;
-    
-   public:
-    QuadraticPolinomial(){};
-    QuadraticPolinomial(double a, double b, double c);
-    ~QuadraticPolinomial(){};
-    void general_formula();
-    void vertex();
-    void evaluation(double x_values[], double y_values[],int leng);
-    void set_a(double value);
-    void set_b(double value);
-    void set_c(double value);
-    double get_a();
-    double get_b();
-    double get_c();
-};
-
-
-
-int main()
-{
-    double value1 = 8, value2=1, value3=5;   
-    
-
-    string answer1 = "yes";
-    string answer2 = "yes";
-    double x_values[] = {2,3,4,5,7,8};
-    double y_values[6] = {};
-    int leng = 6;
-
-    QuadraticPolinomial poly1;
-    QuadraticPolinomial poly2(1,3,2);
-
-
-    while(answer1 == answer2)
-    {
-        cout<<"Please provide the coefficients of your quadratic equation: "<<endl;
-        cin >> value1 >> value2 >> value3;
-
-        poly1.set_a(value1);
-        poly1.set_b(value2);
-        poly1.set_c(value3);
-    
-        
-        poly1.general_formula();
-        poly1.evaluation(x_values, y_values,leng);
-       cout<<"\nDo you want to keep using the APP? ";
-       cin >> ws;
-       getline(cin,answer2);
-    }
-
-
-
-  return 0;  
-} 
-
-
-/*********************************** METHODS *******************************************/
+using namespace std;
 
 QuadraticPolinomial::QuadraticPolinomial(double a, double b, double c)
 {
