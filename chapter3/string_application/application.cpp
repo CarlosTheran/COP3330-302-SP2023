@@ -8,8 +8,27 @@ using namespace std;
 void ClientTable::set_inf()
 {
   ifstream InputFile;
+  int index = 0;
 
   InputFile.open("agenda_phone.txt");
+
+     if(!InputFile)
+    {
+        cerr<<"Error: file could not be opened"<<endl; // file couldn't be opened
+        exit(1);
+    }
+
+    while(!InputFile.eof())  //eof() is a function from your ifstream class; It allows to identify is the line is empty or not.
+    {
+        InputFile >> id[index];
+        InputFile >> name[index];
+        InputFile >> phone[index];
+
+        printf("Client info: %s %s %s\n", id[index].c_str(), name[index].c_str(), phone[index].c_str());
+        
+        index = index + 1;
+    }
+    num_clients = index - 1;
 
 }
 
